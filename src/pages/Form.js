@@ -25,7 +25,7 @@ const Form = ({ initialBeer, handleSubmit, buttonLabel, history }) => {
     //pass formData to handleSubmit prop function
     handleSubmit(formData);
     //push user back to main page
-    history.push("/");
+    history.push("/beers");
   };
 
   // Our Form, an input for the subject and details fields and a submit button
@@ -34,14 +34,20 @@ const Form = ({ initialBeer, handleSubmit, buttonLabel, history }) => {
       <input
         type="text"
         onChange={handleChange}
-        value={formData.subject}
-        name="subject"
+        value={formData.brand}
+        name="brand"
       />
       <input
         type="text"
         onChange={handleChange}
-        value={formData.details}
-        name="details"
+        value={formData.style}
+        name="style"
+      />
+      <input
+        type="text"
+        onChange={handleChange}
+        value={formData.country}
+        name="country"
       />
       <input type="submit" value={buttonLabel} />
     </form>

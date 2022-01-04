@@ -10,7 +10,11 @@ import { useState, useEffect } from "react";
 // Import components from React Router
 import { Route, Switch, Link } from "react-router-dom";
 
+
 function App(props) {
+
+ 
+
   ////////////////////
   // Style Objects
   ////////////////////
@@ -18,12 +22,18 @@ function App(props) {
   const h1 = {
     textAlign: "center",
     margin: "10px",
+    backgroundColor: "grey",
+    color: "white"
   };
   const button = {
     backgroundColor: "navy",
     display: "block",
     margin: "auto",
   };
+
+
+
+  
 
   ///////////////
   // State & Other Variables
@@ -43,6 +53,7 @@ function App(props) {
 
   const [targetBeer, setTargetBeer] = useState(nullBeer);
 
+ 
   //////////////
   // Functions
   //////////////
@@ -54,8 +65,8 @@ const getBeers = async () => {
 
 const addBeers = async (newBeer) => {
   const response = await fetch(url, {
-    method: "beer", 
-    headers: { "Connect_Type": "application/json", }, 
+    method: "post", 
+    headers: { "Content-Type": "application/json", }, 
     body: JSON.stringify(newBeer),
   });
   getBeers();
@@ -63,7 +74,7 @@ const addBeers = async (newBeer) => {
 
 const getTargetBeer = (beer) => {
   setTargetBeer(beer);
-  props.history.push("/edit");
+  props.history.push("/edit")
 };
 
 // Function to edit todo on form submission
@@ -76,7 +87,7 @@ const updateBeer = async (beer) => {
     body: JSON.stringify(beer),
   });
 
-  // get updated list of todos
+  // get updated list 
   getBeers();
 };
 
@@ -85,10 +96,11 @@ const deleteBeer = async (beer) => {
     method: "delete",
   });
 
-  // get updated list of todos
+  // get updated list 
   getBeers();
-  props.history.push("/");
+  props.history.push("/beers");
 };
+
   //////////////
   // useEffects
   //////////////
@@ -103,43 +115,10 @@ useEffect(() =>{
       <h1 style={h1}>Inventory of Beers</h1>
       <Link to="/new"><button>Create New Beer</button></Link>
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={(routerProps) => <AllBeers {...routerProps} beers={beers} />}
-        />
-        <Route
-          path="/beer/:id"
-          render={(routerProps) => (
-            <SingleBeer 
-            {...routerProps} 
-            beers={beers} 
-            edit={getTargetBeer}
-            deleteBeer={deleteBeer}
-            />
-          )}   
-           />         
-        <Route
-          path="/new"
-          render={(routerProps) => (
-          <Form 
-            {...routerProps} 
-            initialBeer={nullBeer}
-            handleSubmit={addBeers}
-            buttonLabel="create beer"
-          />
-          )}
-        />
-        <Route
-          path="/edit"
-          render={(routerProps) =>(
-             <Form 
-            {...routerProps} 
-            initialBeer={targetBeer}
-            handleSubmit={updateBeer}
-            buttonLabel="update beer"
-            />)}
-        />
+        <Route exact path="/beers" render= {(routerProps) => <AllBeers {...routerProps} beers={beers}/> } />
+        <Route path="/beers/:id" render={(routerProps) => <SingleBeer {...routerProps} beers={beers} edit={getTargetBeer} deleteBeer={deleteBeer}/> } />
+        <Route path="/new" render={(routerProps) => <Form {...routerProps} initialBeer={nullBeer} handleSubmit={addBeers} buttonLabel="create beer" /> } />
+        <Route path="/edit" render={(routerProps) => <Form {...routerProps} initialBeer={targetBeer} handleSubmit={updateBeer} buttonLabel="update beer"/> } />
       </Switch>
     </div>
   );

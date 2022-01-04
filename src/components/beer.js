@@ -14,10 +14,11 @@ const Beer = ({ beer }) => {
   };
   return (
     <div style={div}>
-      <Link to={`/beer/${beer.id}`}>
-        <h1>{beer.subject}</h1>
+      <Link to={`/beers/${beer.id}`}>
+        <h1>{beer.brand}</h1>
       </Link>
-      <h2>{beer.details}</h2>
+      <h2>{beer.style}</h2>
+      <h2>{beer.country}</h2>
     </div>
   );
 };
