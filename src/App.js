@@ -23,18 +23,21 @@ function App(props) {
     textAlign: "center",
     margin: "10px",
     backgroundColor: "grey",
-    color: "white"
+    color: "white",
+    
   };
   const button = {
-    backgroundColor: "navy",
+    backgroundColor: "white",
     display: "block",
     margin: "auto",
+   
   };
 
-
+  const h2 = {
+    color: "red"
+  }
 
   
-
   ///////////////
   // State & Other Variables
   ///////////////

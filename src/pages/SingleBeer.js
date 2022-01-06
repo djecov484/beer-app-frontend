@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import  ConfirmAlert  from "../components/ConfirmAlert";
+import  DeleteModal  from "../components/DeleteModal";
 
 // destructuring the props needed to get our post, including router prop match
 const SingleBeer = ({ beers, match, edit, deleteBeer }) => {
@@ -16,7 +16,9 @@ const SingleBeer = ({ beers, match, edit, deleteBeer }) => {
     border: "3px solid green",
     width: "80%",
     margin: "30px auto",
+    color: "white"
   };
+
 
   return (
     <div style={div}>
@@ -25,7 +27,7 @@ const SingleBeer = ({ beers, match, edit, deleteBeer }) => {
       <h2>{beer.country}</h2>
       <button onClick={(event) => edit(beer)}>Edit</button>
       
-      <ConfirmAlert deleteBeer={deleteBeer} beer={beer} > </ConfirmAlert>
+      <DeleteModal deleteBeer={deleteBeer} beer={beer} />
       
       <Link to="/beers">
         <button>Go Back</button>
